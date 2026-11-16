@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Token Radar — pre-token protocols ranked by implied value</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand"><span class="dot"></span><div><h1>Token Radar</h1><p class="sub">Pre-token protocols, ranked by what a token would be worth if the record stayed as it is.</p></div></div>
+  <nav class="tabs" id="tabs">
+    <button data-tab="board" class="on">Board</button>
+    <button data-tab="live">Live tokens</button>
+    <button data-tab="method">Method &amp; validation</button>
+  </nav>
+</header>
+<main>
+  <section id="tab-board" class="tab on">
+    <div id="stats" class="stats"></div>
+    <div id="banner" class="banner"></div>
+    <div class="controls" id="controls">
+      <input id="q" type="search" placeholder="Search name, slug or category…" aria-label="Search">
+      <select id="fcat" aria-label="Category filter"></select>
+      <select id="fchain" aria-label="Chain filter"></select>
+      <select id="fverdict" aria-label="Verdict filter">
+        <option value="">All verdicts</option><option value="farm">Farm</option><option value="watch">Watch</option><option value="skip">Skip</option>
+      </select>
+      <label class="chk"><input type="checkbox" id="fwatch"> Watchlist only</label>
+      <select id="sort" aria-label="Sort">
+        <option value="value">Sort: implied value, high first</option>
+        <option value="tvl">Sort: TVL, high first</option>
+        <option value="chg">Sort: 7d change, high first</option>
+        <option value="p10">Sort: low end (p10), high first</option>
+        <option value="band">Sort: band, tightest first</option>
+        <option value="net">Sort: net cost, low first</option>
+      </select>
+    </div>
+    <div id="count" class="count"></div>
+    <div class="tablewrap"><table id="board" class="board">
+      <thead><tr><th>#</th><th>Protocol</th><th>Category</th><th>Chains</th><th class="num">TVL</th><th class="num">7d</th><th class="num">Implied value</th><th>p10–p90</th><th>Verdict</th><th class="num">Net cost</th></tr></thead>
+      <tbody id="tbody"></tbody>
+    </table></div>
+    <p class="foot" id="foot"></p>
+  </section>
+  <section id="tab-live" class="tab">
+    <h2>Live tokens <span class="muted">— the 92 trading comps, top 24 by market cap</span></h2>
+    <p class="lede">These protocols already trade. The board never ranks them: their market caps are the evidence the model learns from, and this table shows what the market actually pays for TVL.</p>
+    <div class="tablewrap"><table class="board">
+      <thead><tr><th>#</th><th>Protocol</th><th>Category</th><th class="num">TVL</th><th class="num">Market cap</th><th class="num">Multiple</th><th class="num">7d</th></tr></thead>
+      <tbody id="livetbody"></tbody>
+    </table></div>
+  </section>
+  <section id="tab-method" class="tab">
+    <h2>Method &amp; validation</h2>
+    <div id="method"></div>
+  </section>
+</main>
+<div id="overlay" class="overlay" hidden></div>
+<aside id="drawer" class="drawer" hidden aria-label="Protocol detail"></aside>
+<script src="../data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
